@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+    
+    class ProductDetailPage extends StatefulWidget {
+      @override
+      _ProductDetailPageState createState() => _ProductDetailPageState();
+    }
+    
+    class _ProductDetailPageState extends State<ProductDetailPage> with TickerProviderStateMixin {
+    
+    
+     TabController _tabController;
+      @override
+      void initState() {
+        super.initState();
+        _tabController = new TabController(vsync: this, length: 3);
+      }
+    
+      @override
+      void dispose() {
+        _tabController.dispose();
+        super.dispose();
+      }
+    
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(
+                Icons.chevron_left,
+                size: 40.0,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            backgroundColor: Colors.white,
+            title: Text(
+              "PRODUCT DETAIL",
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+          ),
+          body: Container(
+            child: Stack(
+              children: <Widget>[
+                TabBarView(
+                  controller: _tabController,
+                  children: <Widget>[
+                    Image.network(
+                        "https://images.generated.photos/KldlkvwTsy-Y5eNF7dTmiuzysT34n4LFqLKbc4ruXww/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzA3NTk1MjIuanBn.jpg"),
+                    Image.network( 
+                        "https://images.generated.photos/2DRL37txOOpW2dSdxqj5RJiS-hICdPFbZo5TAWg6y-g/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzAwMjQyMjEuanBn.jpg"),
+                    Image.network(
+                        "https://images.generated.photos/HGi3O-Q89sjYejn7ZKTWMgos_0dpnUCBhcnLFobZIOY/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzAwMDIzNzUuanBn.jpg"),
+                  ],
+                ),
+                Container(
+                  alignment: FractionalOffset(0.5, 0.95),
+                  child: TabPageSelector(
+                    controller: _tabController,
+                    selectedColor: Colors.grey,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    }
